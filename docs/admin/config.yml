@@ -3,19 +3,17 @@ backend:
   repo: Melonhead60/melonhead60.github.io
   branch: main
   
-  # GitHub OAuth Config
+  # ===== GitHub OAuth ONLY =====
   auth_type: implicit
   app_id: Ov23liSi7TaRogD19hLc
-  
-  # Explicit GitHub OAuth endpoints
   auth_endpoint: https://github.com/login/oauth/authorize
+  auth_scope: "repo"  # Required for repo access
   
-  # Nuclear option to disable all Netlify services
+  # ===== DISABLE Netlify Services =====
   identity: false
+  identity_url: null
   gateway: null
-  
-  # Required scope
-  auth_scope: "repo"
+  gateway_url: null
 
 media_folder: "src/images"
 public_folder: "/images"

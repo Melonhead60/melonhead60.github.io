@@ -6,13 +6,17 @@
     <meta name="robots" content="noindex" />
     <title>Content Manager</title>
     <script>
-      // Nuclear option to disable all Netlify auth behavior
+      // ===== CRITICAL =====
+      // Force GitHub OAuth (NO Netlify)
       window.CMS_USE_GITHUB_IMPLICIT = true;
       window.CMS_GITHUB_OAUTH_CLIENT_ID = "Ov23liSi7TaRogD19hLc";
-      window.CMS_GITHUB_OAUTH_AUTHORIZE_URL = "https://github.com/login/oauth/authorize";
       
-      // This is the critical line that prevents Netlify URL hijacking
+      // ===== NUKES Netlify's auth hijacking =====
       window.CMS_USE_GIT_GATEWAY = false;
+      window.CMS_DISABLE_NETLIFY_AUTH = true;  // <-- New critical line
+      
+      // ===== Forces direct GitHub OAuth URL =====
+      window.CMS_GITHUB_OAUTH_AUTHORIZE_URL = "https://github.com/login/oauth/authorize";
     </script>
   </head>
   <body>
