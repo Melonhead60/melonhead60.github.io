@@ -1,10 +1,12 @@
 backend:
   name: github
   repo: Melonhead60/melonhead60.github.io
-  branch: main                        # Your default branch
-  base_url: https://melonhead60.github.io
-  auth_type: implicit  # Required for GitHub Pages
-  app_id: Ov23liSi7TaRogD19hLc
+  branch: main
+  base_url: https://melonhead60.github.io  # Must be exact
+  auth_type: implicit
+  app_id: Ov23liSi7TaRogD19hLc  # From GitHub OAuth App
+  # Critical: Disable Netlify-style auth
+  auth_endpoint: null
 
 media_folder: "src/images"            # Where original images are stored
 public_folder: "/images"              # Path in the built site
