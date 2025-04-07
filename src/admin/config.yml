@@ -9,7 +9,7 @@ backend:
   auth_endpoint: https://github.com/login/oauth/authorize
   auth_scope: "repo"
   
-  # ===== Disable ALL Netlify Services =====
+  # ===== DISABLE Netlify Completely =====
   identity: false
   identity_url: null
   gateway: null

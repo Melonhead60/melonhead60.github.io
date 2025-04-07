@@ -5,28 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Content Manager</title>
+    
+    <!-- ===== CRITICAL: Override Decap CMS internals ===== -->
     <script>
-      // ===== COMPLETELY DISABLE NETLIFY =====
-      window.CMS_USE_GIT_GATEWAY = false;
+      // 1. Force GitHub OAuth (NO Netlify)
       window.CMS_USE_GITHUB_IMPLICIT = true;
-      
-      // ===== FORCE GITHUB OAUTH =====
       window.CMS_GITHUB_OAUTH_CLIENT_ID = "Ov23liSi7TaRogD19hLc";
-      window.CMS_GITHUB_OAUTH_AUTHORIZE_URL = "https://github.com/login/oauth/authorize";
       
-      // ===== PREVENT NETLIFY PROXY (CRITICAL) =====
-      window.CMS_BACKEND = {
-        name: "github",
-        auth_scope: "repo",
-        repo: "Melonhead60/melonhead60.github.io",
-        branch: "main",
-        api_root: "https://api.github.com",
-        base_url: "https://melonhead60.github.io"
+      // 2. Disable ALL Netlify services
+      window.CMS_USE_GIT_GATEWAY = false;
+      window.CMS_DISABLE_NETLIFY_AUTH = true;
+      
+      // 3. Override the auth handler completely
+      window.CMS_AUTH_PROVIDERS = {
+        github: {
+          auth_type: "implicit",
+          authorize_url: "https://github.com/login/oauth/authorize",
+          scope: "repo",
+          client_id: "Ov23liSi7TaRogD19hLc"
+        }
       };
+      
+      // 4. Patch Decap CMS internals (critical)
+      document.addEventListener("DOMContentLoaded", () => {
+        const originalInit = window.CMS.init;
+        window.CMS.init = function(config) {
+          if (config.backend) {
+            // Remove any Netlify references
+            config.backend.identity = false;
+            config.backend.gateway = null;
+            config.backend.auth_endpoint = "https://github.com/login/oauth/authorize";
+          }
+          return originalInit.call(this, config);
+        };
+      });
     </script>
-  </head>
-  <body>
+    
     <!-- Load Decap CMS from CDN -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-  </body>
+  </head>
+  <body></body>
 </html>
