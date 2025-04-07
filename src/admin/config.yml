@@ -2,7 +2,7 @@ backend:
   name: github
   repo: Melonhead60/melonhead60.github.io
   branch: main                        # Your default branch
-  base_url: https://your-username.github.io
+  base_url: https://melonhead60.github.io
   auth_type: implicit  # Required for GitHub Pages
 
 media_folder: "src/images"            # Where original images are stored
