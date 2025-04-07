@@ -7,6 +7,9 @@ backend:
   app_id: Ov23liSi7TaRogD19hLc  # From GitHub OAuth App
   # Critical: Disable Netlify-style auth
   auth_endpoint: null
+  auth_scope: "repo"  # Explicitly request repo access
+  identity_url: "https://github.com/login/oauth/authorize"
+  gateway_url: null   # Completely disable Netlify gateway
 
 media_folder: "src/images"            # Where original images are stored
 public_folder: "/images"              # Path in the built site
