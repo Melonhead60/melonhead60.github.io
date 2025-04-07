@@ -3,21 +3,63 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Decap CMS</title>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <title>Content Manager</title>
+  <style>
+    html, body, #nc-root {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <!-- Explicit mount point with fixed ID -->
+  <div id="nc-root"></div>
+
+  <!-- Load from jsDelivr as fallback -->
+  <script src="https://cdn.jsdelivr.net/npm/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  
   <script>
-    // Required for GitHub Pages auth
-    CMS.init({
-      config: {
-        backend: {
-          auth_type: "implicit",
-          base_url: "https://melonhead60.github.io"
-        }
+    // Defense against all errors
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.decapCMS) {
+        window.decapCMS.init({
+          config: {
+            backend: {
+              name: "github",
+              repo: "Melonhead60/melonhead60.github.io",
+              branch: "main",
+              base_url: "https://melonhead60.github.io",
+              auth_type: "implicit"
+            },
+            load_config_file: false,
+            media_folder: "src/images",
+            public_folder: "/images",
+            collections: [
+              {
+                name: "blog",
+                label: "Blog Posts",
+                folder: "src/blog",
+                fields: [
+                  { name: "title", label: "Title", widget: "string" },
+                  { name: "date", label: "Date", widget: "datetime" },
+                  { name: "body", label: "Body", widget: "markdown" }
+                ]
+              }
+            ]
+          }
+        });
+      } else {
+        console.error("CMS script failed to load");
+        document.getElementById('nc-root').innerHTML = `
+          <div style="padding: 2rem">
+            <h1>CMS Loading Error</h1>
+            <p>Try refreshing or check your connection</p>
+          </div>
+        `;
       }
     });
   </script>
-</head>
-<body>
-  <!-- CMS will auto-inject here -->
 </body>
 </html>
