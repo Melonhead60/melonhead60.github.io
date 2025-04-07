@@ -6,8 +6,10 @@
     <meta name="robots" content="noindex" />
     <title>Content Manager</title>
     <script>
-      // Prevents Netlify-style auth
+      // Force GitHub implicit auth flow
       window.CMS_USE_GITHUB_IMPLICIT = true;
+      // Set the OAuth callback URL explicitly
+      window.CMS_GITHUB_OAUTH_CLIENT_ID = "Ov23liSi7TaRogD19hLc";
     </script>
   </head>
   <body>
