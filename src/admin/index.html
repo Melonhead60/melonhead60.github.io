@@ -6,14 +6,17 @@
     <meta name="robots" content="noindex" />
     <title>Content Manager</title>
     <script>
-      // Force GitHub implicit auth flow
+      // Nuclear option to disable all Netlify auth behavior
       window.CMS_USE_GITHUB_IMPLICIT = true;
-      // Set the OAuth callback URL explicitly
       window.CMS_GITHUB_OAUTH_CLIENT_ID = "Ov23liSi7TaRogD19hLc";
+      window.CMS_GITHUB_OAUTH_AUTHORIZE_URL = "https://github.com/login/oauth/authorize";
+      
+      // This is the critical line that prevents Netlify URL hijacking
+      window.CMS_USE_GIT_GATEWAY = false;
     </script>
   </head>
   <body>
-    <!-- Include the script that builds the page and powers Decap CMS -->
+    <!-- Load Decap CMS -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </body>
 </html>

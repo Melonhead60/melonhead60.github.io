@@ -2,15 +2,20 @@ backend:
   name: github
   repo: Melonhead60/melonhead60.github.io
   branch: main
-  # Remove base_url as it's not needed for GitHub auth
+  
+  # GitHub OAuth Config
   auth_type: implicit
-  app_id: Ov23liSi7TaRogD19hLc  # From GitHub OAuth App
+  app_id: Ov23liSi7TaRogD19hLc
+  
+  # Explicit GitHub OAuth endpoints
   auth_endpoint: https://github.com/login/oauth/authorize
-  # GitHub's OAuth scope needs to include repo for full access
+  
+  # Nuclear option to disable all Netlify services
+  identity: false
+  gateway: null
+  
+  # Required scope
   auth_scope: "repo"
-  # Explicitly disable Netlify-specific features
-  identity_url: null
-  gateway_url: null
 
 media_folder: "src/images"
 public_folder: "/images"
