@@ -4,6 +4,7 @@ backend:
   branch: main                        # Your default branch
   base_url: https://melonhead60.github.io
   auth_type: implicit  # Required for GitHub Pages
+  app_id: Ov23liSi7TaRogD19hLc
 
 media_folder: "src/images"            # Where original images are stored
 public_folder: "/images"              # Path in the built site
