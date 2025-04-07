@@ -6,21 +6,27 @@
     <meta name="robots" content="noindex" />
     <title>Content Manager</title>
     <script>
-      // ===== CRITICAL =====
-      // Force GitHub OAuth (NO Netlify)
-      window.CMS_USE_GITHUB_IMPLICIT = true;
-      window.CMS_GITHUB_OAUTH_CLIENT_ID = "Ov23liSi7TaRogD19hLc";
-      
-      // ===== NUKES Netlify's auth hijacking =====
+      // ===== COMPLETELY DISABLE NETLIFY =====
       window.CMS_USE_GIT_GATEWAY = false;
-      window.CMS_DISABLE_NETLIFY_AUTH = true;  // <-- New critical line
+      window.CMS_USE_GITHUB_IMPLICIT = true;
       
-      // ===== Forces direct GitHub OAuth URL =====
+      // ===== FORCE GITHUB OAUTH =====
+      window.CMS_GITHUB_OAUTH_CLIENT_ID = "Ov23liSi7TaRogD19hLc";
       window.CMS_GITHUB_OAUTH_AUTHORIZE_URL = "https://github.com/login/oauth/authorize";
+      
+      // ===== PREVENT NETLIFY PROXY (CRITICAL) =====
+      window.CMS_BACKEND = {
+        name: "github",
+        auth_scope: "repo",
+        repo: "Melonhead60/melonhead60.github.io",
+        branch: "main",
+        api_root: "https://api.github.com",
+        base_url: "https://melonhead60.github.io"
+      };
     </script>
   </head>
   <body>
-    <!-- Load Decap CMS -->
+    <!-- Load Decap CMS from CDN -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </body>
 </html>

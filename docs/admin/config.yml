@@ -3,13 +3,13 @@ backend:
   repo: Melonhead60/melonhead60.github.io
   branch: main
   
-  # ===== GitHub OAuth ONLY =====
+  # ===== GitHub Native Auth =====
   auth_type: implicit
   app_id: Ov23liSi7TaRogD19hLc
   auth_endpoint: https://github.com/login/oauth/authorize
-  auth_scope: "repo"  # Required for repo access
+  auth_scope: "repo"
   
-  # ===== DISABLE Netlify Services =====
+  # ===== Disable ALL Netlify Services =====
   identity: false
   identity_url: null
   gateway: null
