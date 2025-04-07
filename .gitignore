@@ -1,2 +1,10 @@
 # Local Netlify folder
 .netlify
+node_modules/
+_site/
+.DS_Store
+node_modules/
+_site/
+.env
+.cache/
+.eleventy-cache/
